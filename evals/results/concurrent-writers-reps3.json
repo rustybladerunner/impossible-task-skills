@@ -1,0 +1,225 @@
+{
+  "floor": 0.67,
+  "reps": 3,
+  "report": [
+    {
+      "skill": "concurrent-writers",
+      "tp": 12,
+      "fn": 0,
+      "tn": 11,
+      "fp": 0,
+      "recall": 1,
+      "specificity": 1,
+      "errored": 1,
+      "suspicion": null,
+      "byQuery": [
+        {
+          "query": "i've got three agent sessions going in the same repo and one of them just committed a file another one had staged. what's the safe way to commit when i can't be sure the index is mine",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "someone rebased our shared branch and now a commit i made this morning has just vanished. it's not in the log at all and the sha i wrote down doesn't resolve",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "about to clean up a bunch of stray assets in the project folder but half of them might belong to whoever is working on the vegetation pass. how do i not delete their stuff",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "two of us have the unreal editor open on the same .umap and it's an LFS binary so it can't merge. what's the protocol here",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "i need to undo my last two commits but keep the changes in my working tree. i'm the only one on this repo",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "what's the difference between git reset --soft and --mixed, i can never remember which one keeps things staged",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "our team keeps getting merge conflicts in package-lock.json every time two people add a dependency. is there a way to stop that",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "i want to commit only the three files i changed for this feature, not the other stuff sitting dirty in my tree",
+          "should": false,
+          "runs": 2,
+          "fired": 0,
+          "errored": 1,
+          "rate": 0,
+          "flaky": false
+        }
+      ],
+      "results": [
+        {
+          "query": "i've got three agent sessions going in the same repo and one of them just committed a file another one had staged. what's the safe way to commit when i can't be sure the index is mine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i've got three agent sessions going in the same repo and one of them just committed a file another one had staged. what's the safe way to commit when i can't be sure the index is mine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i've got three agent sessions going in the same repo and one of them just committed a file another one had staged. what's the safe way to commit when i can't be sure the index is mine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "someone rebased our shared branch and now a commit i made this morning has just vanished. it's not in the log at all and the sha i wrote down doesn't resolve",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "someone rebased our shared branch and now a commit i made this morning has just vanished. it's not in the log at all and the sha i wrote down doesn't resolve",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "someone rebased our shared branch and now a commit i made this morning has just vanished. it's not in the log at all and the sha i wrote down doesn't resolve",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "about to clean up a bunch of stray assets in the project folder but half of them might belong to whoever is working on the vegetation pass. how do i not delete their stuff",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "about to clean up a bunch of stray assets in the project folder but half of them might belong to whoever is working on the vegetation pass. how do i not delete their stuff",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "about to clean up a bunch of stray assets in the project folder but half of them might belong to whoever is working on the vegetation pass. how do i not delete their stuff",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "two of us have the unreal editor open on the same .umap and it's an LFS binary so it can't merge. what's the protocol here",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "two of us have the unreal editor open on the same .umap and it's an LFS binary so it can't merge. what's the protocol here",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "two of us have the unreal editor open on the same .umap and it's an LFS binary so it can't merge. what's the protocol here",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i need to undo my last two commits but keep the changes in my working tree. i'm the only one on this repo",
+          "should": false,
+          "fired": false,
+          "why": "Ordinary single-author git. The whole premise of this skill is other writers."
+        },
+        {
+          "query": "i need to undo my last two commits but keep the changes in my working tree. i'm the only one on this repo",
+          "should": false,
+          "fired": false,
+          "why": "Ordinary single-author git. The whole premise of this skill is other writers."
+        },
+        {
+          "query": "i need to undo my last two commits but keep the changes in my working tree. i'm the only one on this repo",
+          "should": false,
+          "fired": false,
+          "why": "Ordinary single-author git. The whole premise of this skill is other writers."
+        },
+        {
+          "query": "what's the difference between git reset --soft and --mixed, i can never remember which one keeps things staged",
+          "should": false,
+          "fired": false,
+          "why": "A definitional question with a short answer; no coordination problem."
+        },
+        {
+          "query": "what's the difference between git reset --soft and --mixed, i can never remember which one keeps things staged",
+          "should": false,
+          "fired": false,
+          "why": "A definitional question with a short answer; no coordination problem."
+        },
+        {
+          "query": "what's the difference between git reset --soft and --mixed, i can never remember which one keeps things staged",
+          "should": false,
+          "fired": false,
+          "why": "A definitional question with a short answer; no coordination problem."
+        },
+        {
+          "query": "our team keeps getting merge conflicts in package-lock.json every time two people add a dependency. is there a way to stop that",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close - several writers - but it is a mergeable text file with a known lockfile answer, not the unmergeable-binary coordination problem."
+        },
+        {
+          "query": "our team keeps getting merge conflicts in package-lock.json every time two people add a dependency. is there a way to stop that",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close - several writers - but it is a mergeable text file with a known lockfile answer, not the unmergeable-binary coordination problem."
+        },
+        {
+          "query": "our team keeps getting merge conflicts in package-lock.json every time two people add a dependency. is there a way to stop that",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close - several writers - but it is a mergeable text file with a known lockfile answer, not the unmergeable-binary coordination problem."
+        },
+        {
+          "query": "i want to commit only the three files i changed for this feature, not the other stuff sitting dirty in my tree",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "i want to commit only the three files i changed for this feature, not the other stuff sitting dirty in my tree",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on scoped-commit, which owns staging discipline for a single author."
+        },
+        {
+          "query": "i want to commit only the three files i changed for this feature, not the other stuff sitting dirty in my tree",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on scoped-commit, which owns staging discipline for a single author."
+        }
+      ]
+    }
+  ]
+}

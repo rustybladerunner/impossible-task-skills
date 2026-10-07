@@ -1,0 +1,42 @@
+{
+  "skill_name": "silent-no-ops",
+  "note": "The distinguishing signal is a SUCCESSFUL operation that changed nothing. Negatives are ordinary failures, which are a different problem: an error tells you where to look, silence does not — plus reference-match-loop, the cross-cluster near-miss that shares this skill's whole premise of not trusting a green return value. The line between them: silent-no-ops is for a write that never landed; reference-match-loop is for a write that landed and is wrong, where the missing evidence is a capture held against a reference.",
+  "queries": [
+    {
+      "query": "my python script says it saved the asset, exit code 0, no errors anywhere, but when i open the editor nothing has changed. the file's modified time is from yesterday",
+      "should_trigger": true
+    },
+    {
+      "query": "i've got two copies of basically the same script, one for running headless and one that goes through the plugin socket, and there's a comment in both begging you to keep them in sync. how did we end up here and what should it look like instead",
+      "should_trigger": true
+    },
+    {
+      "query": "the screenshot command returns fine every time but i keep getting the same image back from the first run. i've moved the camera between captures and the png is byte identical",
+      "should_trigger": true
+    },
+    {
+      "query": "set_material comes back true and then save_asset does nothing at all - no error, no warning, and the asset in the browser still shows the old one on it. this is all going over the editor's python socket. am i holding it wrong or is the assignment just never marking anything dirty",
+      "should_trigger": true
+    },
+    {
+      "query": "the script crashes with a KeyError on line 40 when the config is missing the 'targets' key. i want it to fail with something readable instead of a traceback",
+      "should_trigger": false,
+      "why": "A loud, visible failure. This skill is specifically about operations that report success."
+    },
+    {
+      "query": "our deploy job went green about forty minutes ago and the rollout says complete in the dashboard, but the app in production is still serving the old version - i can see the previous build number in the footer and two people have now asked me why their fix isn't live",
+      "should_trigger": false,
+      "why": "Genuinely close, but this is a deploy/promotion problem and ci-cd-pipelines owns rollout verification."
+    },
+    {
+      "query": "i want to add retries to this API client, it fails maybe 2% of the time with a 503 and right now that just bubbles up to the user",
+      "should_trigger": false,
+      "why": "Near-miss on api-integration: a visible, intermittent failure being handled, not a silent success."
+    },
+    {
+      "query": "i keep signing the character export off because the script prints the path it wrote and our little checker comes back green, and then he opens it in the viewer and the arms are through the torso. the file is definitely being written, the timestamp moves every run. what should i be requiring of myself before i say one of these is done",
+      "should_trigger": false,
+      "why": "Near-miss on reference-match-loop: the write is landing and the return value is honest, so nothing here is a silent no-op — what is missing is a fresh capture held against the reference before the task closes, and a checker proven able to go red."
+    }
+  ]
+}

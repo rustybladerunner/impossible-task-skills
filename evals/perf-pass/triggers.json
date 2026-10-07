@@ -1,0 +1,51 @@
+{
+  "skill_name": "perf-pass",
+  "note": "Negatives are near-misses against baseline-first (recording the starting numbers before touching anything, versus hunting a live bottleneck), sql-query-tuning and ci-cd-pipelines (both own their own domain's slowness), fragile-visual-ui (movement mistaken for jank) and low-vram-video. This skill owns measure, find the dominant cost, fix it, re-measure, on a running app.",
+  "queries": [
+    {
+      "query": "the city scene tanks to about 22fps when you fly in toward downtown and it's completely fine everywhere else in the map. i've got three theories - the lights, the fog shader, the instanced windows - and i've already started ripping the lights out which is probably not smart",
+      "should_trigger": true
+    },
+    {
+      "query": "app pegs a full core even with the tab sitting in the background and my laptop fan never shuts up. there's a render loop and a poll against /api/status in there somewhere and i can't tell which one is doing it or whether it's both together",
+      "should_trigger": true
+    },
+    {
+      "query": "cold load of the dashboard is about nine seconds before anything paints at all and i need it under three. could be the bundle, could be the six fetches it fires on mount, could be the fonts. genuinely no idea where to even start looking first",
+      "should_trigger": true
+    },
+    {
+      "query": "p95 on the search endpoint went from 180ms to 2.1s sometime in the last fortnight and nobody can tell me what landed in that window. we pay for datadog but i've never really learned to read it for something like this",
+      "should_trigger": true
+    },
+    {
+      "query": "the three.js view sits at about 6.8gb on an 8gb card and windows starts stuttering everywhere else on the machine while it's open. roughly 4000 draw calls and every texture is 4k because that's just what came out of the asset pipeline",
+      "should_trigger": true
+    },
+    {
+      "query": "before i start on the renderer rewrite i want the current numbers written down somewhere we can diff against afterwards, so the argument later isn't just feelings. there's already a hud and a bunch of timers in there from whoever built it originally",
+      "should_trigger": false,
+      "why": "Near-miss on baseline-first: capturing what existing instrumentation already says before changing anything, rather than chasing a bottleneck that is hurting now."
+    },
+    {
+      "query": "one query behind the reports page takes forty seconds. explain analyze shows a nested loop over two million rows and the row estimate is out by about three orders of magnitude. the rest of the app is fine",
+      "should_trigger": false,
+      "why": "Near-miss on sql-query-tuning: a specific query plan with its own diagnosis method, already isolated as the cost."
+    },
+    {
+      "query": "our pipeline takes 41 minutes and about 30 of that is the docker build starting from scratch on every single run. the app itself is fine, it's the automation around it that's dragging and people have stopped waiting for it",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: build system duration, caching and ordering, not the running application's performance."
+    },
+    {
+      "query": "the page feels janky but i think what's actually happening is things are moving - the header collapses and everything below it jumps down as the hero image finishes loading. framerate is fine once nothing is loading",
+      "should_trigger": false,
+      "why": "Near-miss on fragile-visual-ui: content shifting during load is a layout defect, not a cost to profile away."
+    },
+    {
+      "query": "clips out of the video model on my 3060 ti come out warped and melty around the hands and it's twelve minutes a shot. i'd honestly take slower if it stopped looking like that, but i don't know which knob buys me that",
+      "should_trigger": false,
+      "why": "Near-miss on low-vram-video: output quality inside a small GPU budget, not a bottleneck to measure and remove."
+    }
+  ]
+}

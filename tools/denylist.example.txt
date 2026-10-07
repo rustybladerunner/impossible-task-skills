@@ -1,0 +1,22 @@
+# Private codename denylist -- EXAMPLE. Copy to `denylist.local.txt` (gitignored)
+# and fill in with the names this repo must never publish.
+#
+# The lint loads `tools/denylist.local.txt` automatically when it exists and fails
+# any skill that names a listed term. The real list is NOT committed: publishing
+# "here are the words we are hiding" defeats the point.
+#
+# One term per line. Matched case-insensitively on word boundaries. `#` starts a comment.
+#
+# WATCH FOR FALSE POSITIVES. A codename that is also an ordinary craft word will
+# fire on legitimate prose and make the gate too noisy to run -- which is the same
+# as having no gate. Do not add words like "grain" (film grain), "spinner"
+# (loading spinner), "goal", or "forge" unless you have checked the corpus first:
+#
+#   node tools/lint.mjs
+#
+# Verify after every edit to the list: the shipped skills must still pass.
+
+internal-project-codename
+another-codename
+client-or-product-name
+custom-model-filename

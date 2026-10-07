@@ -1,0 +1,51 @@
+{
+  "skill_name": "baseline-first",
+  "note": "Negatives are near-misses against perf-pass, gate-triage, fix-once, reference-match-loop and queue-constraint, all of which also involve running something and reading numbers off it. baseline-first fires when nothing has been changed yet and the existing instrumentation is being captured as a comparable artifact; perf-pass owns a live slowness complaint, gate-triage owns a suite that is already red and blocking, fix-once owns the check written after a fix, reference-match-loop owns closing a visual task against its reference, and queue-constraint owns the same measure-before-you-build instinct applied to the stages of a work pipeline (that pair is the sharpest near-miss in this cluster and each set carries the other as a negative).",
+  "queries": [
+    {
+      "query": "took over a repo from a contractor who's left. there's a spec folder with about thirty things in it i have never run, and i'm about to tear out the auth module this week. starting without knowing what those currently say feels reckless, but i also can't lose a whole day to it",
+      "should_trigger": true
+    },
+    {
+      "query": "the build we were sent ships with its own little self test mode that writes out a results text file when you run it. i'm about to build a whole new feature on top of that thing. is sweeping that first actually worth the time or am i just procrastinating",
+      "should_trigger": true
+    },
+    {
+      "query": "i ran the whole check suite before starting the refactor and the numbers are sitting in my terminal scrollback where they'll be gone by friday. how should i be keeping those so the after-run can honestly be compared against them",
+      "should_trigger": true
+    },
+    {
+      "query": "swept the twelve checks that came with this codebase, haven't touched a line yet, and three of them fail. one reports peak memory as -3.4e38 against a limit of 512 which cannot possibly be a real reading, and two of the three failures are in the same module. no idea what to make of any of it",
+      "should_trigger": true
+    },
+    {
+      "query": "the harness that shipped with this build has six modes and i fired them all off in one go, which somehow produced a single result file. i also swapped the weapon partway through without thinking about it. is any of what i've got comparable, or do i need to run the lot again properly",
+      "should_trigger": true
+    },
+    {
+      "query": "the viewport tanks to about 14fps the moment i load the big scene and the gpu sits pegged the entire time. no idea if it's draw calls or the shader or just too much geometry. where do i even start on this",
+      "should_trigger": false,
+      "why": "Near-miss on perf-pass: a live slowness complaint with a bottleneck to find, not capturing existing instrumentation before a change."
+    },
+    {
+      "query": "ci on main has been red for ten days across five separate checks and i'm fairly sure at least two of them are the linter's own bug. people just merge past it now. dig me out of this",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: a suite that is already red and blocking, rather than a snapshot taken before touching anything."
+    },
+    {
+      "query": "just tracked down the off by one in the pagination cursor and fixed it. this is the second time this exact thing has shipped to users. what do i put in place so it cannot come back a third time",
+      "should_trigger": false,
+      "why": "Near-miss on fix-once: the change is already made and the need is a check that pins it, not a before-state."
+    },
+    {
+      "query": "i keep marking visual tasks done because the layout numbers come back inside tolerance, and then it gets opened and it clearly doesn't look like the concept art. what should i actually be doing before i call one of these finished",
+      "should_trigger": false,
+      "why": "Near-miss on reference-match-loop: closing against a reference capture, not recording a comparable before-state."
+    },
+    {
+      "query": "we're about to bolt another scanner onto the thing that feeds our backlog, and someone said go and measure what we've already got before building anything new. there are 180-odd items sat in there and the runner did one job yesterday. where does that measuring even start",
+      "should_trigger": false,
+      "why": "Near-miss on queue-constraint: the same measure-before-you-build instinct, but what needs measuring is the depth of discovery, promotion and execution in a work pipeline, not instrumentation captured as a before-state for a change."
+    }
+  ]
+}

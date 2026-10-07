@@ -1,0 +1,51 @@
+{
+  "skill_name": "repo-extract",
+  "note": "Negatives are near-misses against scoped-commit, concurrent-writers, ci-cd-pipelines, incident-response and runtime-content-packs. repo-extract owns cutting a subfolder out into its own repo - the code/content line, the pre-staging secrets and media scan, and the harness that silently stops inheriting afterwards. The siblings own a single commit inside an existing repo, coordination between writers, what the new repo's pipeline does, a key that has already leaked, and separating an engine from its content at runtime rather than in git.",
+  "queries": [
+    {
+      "query": "the renderer wrapper folder inside my big workspace repo has quietly turned into a real project with its own server and cli. i want it on github as its own thing, but without renaming the folder and breaking every launch script that points at that path",
+      "should_trigger": true
+    },
+    {
+      "query": "before any of this goes public i need to be certain there's nothing in it that shouldn't be. there's an outputs folder with a few gigs of renders in it and i genuinely cannot swear an api key was never pasted into a config at some point last year",
+      "should_trigger": true
+    },
+    {
+      "query": "in the same folder there's the actual app code and then a pile of client briefs, storyboards and finished renders all mixed together. which of that follows the code out and which of it stays behind in the workspace",
+      "should_trigger": true
+    },
+    {
+      "query": "i split a folder out into its own git repo a few weeks back and only just noticed that none of the hooks or the audit logging have run in there since. nothing ever warned me they'd stopped, it just went quiet",
+      "should_trigger": true
+    },
+    {
+      "query": "the subfolder has maybe 200 commits of history inside the parent repo. do i carry those across or start clean, and does it matter that there are probably some big binaries sitting somewhere back in there",
+      "should_trigger": true
+    },
+    {
+      "query": "my working tree has changes from three sessions in it. commit only the four files i touched this afternoon, double check nothing else got staged along with them, and don't push it",
+      "should_trigger": false,
+      "why": "Near-miss on scoped-commit: one deliberate commit inside an existing repo, not carving out a new one."
+    },
+    {
+      "query": "two of us are writing to this repo at the same time and i'm about to rewrite history on a shared branch. what do i need to check first so i don't destroy somebody else's work",
+      "should_trigger": false,
+      "why": "Near-miss on concurrent-writers: coordination and history rewrites among writers, not extraction."
+    },
+    {
+      "query": "the new repo needs a build on every pull request, and the deploy secrets must not be readable from a fork's pr. how should that side of it be wired up",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: secrets in a pipeline, which is what the repo does after it exists, not the cut itself."
+    },
+    {
+      "query": "we think an aws key was committed and pushed to a public repo months ago and there's billing activity we can't account for. what's the order of operations from here",
+      "should_trigger": false,
+      "why": "Near-miss on incident-response: a secret that has already leaked and may be in use, rather than a pre-staging scan."
+    },
+    {
+      "query": "the viewer and the datasets it ships with need to stop being one thing. i want somebody to be able to drop a new content folder in next to it and have it show up, instead of us doing a code change and a rebuild every time another one lands",
+      "should_trigger": false,
+      "why": "Near-miss on runtime-content-packs: separating engine from content as a runtime contract, not as a git boundary."
+    }
+  ]
+}

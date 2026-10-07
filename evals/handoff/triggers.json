@@ -1,0 +1,51 @@
+{
+  "skill_name": "handoff",
+  "note": "Negatives are near-misses against scoped-commit, one-press, grill-me, baseline-first and queue-constraint - all of which cluster around finishing a piece of work. handoff owns the reviewer-facing write-up plus promoting durable learnings; scoped-commit owns getting the right files into git, one-press owns choosing and doing the next unit, grill-me owns decisions still outstanding, baseline-first owns the numbers captured BEFORE a change, and queue-constraint owns what happens to the follow-ups afterwards.",
+  "queries": [
+    {
+      "query": "closing this out for the night. four files touched, one piece half finished, and there's an electron shell i never actually opened to look at. write something the person picking it up tomorrow can act on without scrolling this entire thread",
+      "should_trigger": true
+    },
+    {
+      "query": "we worked out a couple of non-obvious things today - a build flag that silently does nothing, and why the watchdog keeps relaunching the old binary. i don't want to rediscover those in a month, but i also don't want the notes folder filling up with junk nobody reads",
+      "should_trigger": true
+    },
+    {
+      "query": "your last write-up said the fix should be fine and it wasn't, because you'd never actually run the thing. from now on the summary only claims what you executed and saw, and it says plainly where you skipped something",
+      "should_trigger": true
+    },
+    {
+      "query": "my colleague is taking this over on friday. she needs what actually changed, what i genuinely tested versus what i assumed, and where the risk still sits - not a list of every commit message from the last two days",
+      "should_trigger": true
+    },
+    {
+      "query": "i had to stop halfway through this one - step three turns out to need a call only the client can make, so two of the four things i was asked to do never ran at all. how do i write that up so it reads as an honest stopping point rather than me giving up on it",
+      "should_trigger": true
+    },
+    {
+      "query": "the tree's got my three files plus a load of in-flight stuff from other sessions in it. stage only mine, check nothing else sneaked into the staged list, and don't push it anywhere",
+      "should_trigger": false,
+      "why": "Near-miss on scoped-commit: getting the right files into git, not writing the account of the work."
+    },
+    {
+      "query": "keep the project moving - work out where it currently stands, pick one thing that can genuinely be finished today, take it all the way through, and leave a short note behind about what came of it so tomorrow isn't starting cold",
+      "should_trigger": false,
+      "why": "Near-miss on one-press: the note at the end is one step of a press, and the ask is choosing and executing the next unit of work rather than accounting for work already finished."
+    },
+    {
+      "query": "before we go any further there are five or six things i need you to decide on with me, otherwise the rest of the week is guesswork. put them to me as options and i'll pick",
+      "should_trigger": false,
+      "why": "Near-miss on grill-me: unresolved decisions at the start, not a completion record at the end."
+    },
+    {
+      "query": "before i touch the ingest module i want whatever the existing checks say right now written down properly, so that afterwards i can actually show the change did something rather than assert it",
+      "should_trigger": false,
+      "why": "Near-miss on baseline-first: capturing a before-state, which is the opposite end of the work from a completion write-up."
+    },
+    {
+      "query": "every session ends with three follow-ups filed into the backlog and now there are 200 of them, mostly unusable fragments nobody can pick up. something is wrong with how they're getting in there",
+      "should_trigger": false,
+      "why": "Near-miss on queue-constraint: the health of the queue those follow-ups land in, not the write-up that files them."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "skill_name": "scoped-commit",
+  "note": "The closest sibling is concurrent-writers: both live in a repo with other writers, but scoped-commit is the mechanics of getting exactly my files into one commit right now, while concurrent-writers is the coordination protocol for vanished commits, leases and history rewrites. Other negatives are near-misses on repo-extract (a whole folder becoming its own repo), ci-cd-pipelines (what happens after a commit lands), handoff (the write-up rather than the commit) and automated-code-review (a check that blocks bad commits).",
+  "queries": [
+    {
+      "query": "git status is showing forty-odd modified files across four different projects and maybe six of them are mine from this afternoon. i want a commit with exactly those in it and nothing else - i usually just stage everything and regret it later",
+      "should_trigger": true
+    },
+    {
+      "query": "one file has my new parser function in it and also a load of half finished stuff from yesterday that definitely isn't ready to go anywhere. can i get just my part of that file in without dragging the rest along",
+      "should_trigger": true
+    },
+    {
+      "query": "the trailer at the bottom of all our commits names a model version that hasn't run on this machine since spring, so every commit is crediting something that didn't do the work. what should that line actually say going forward",
+      "should_trigger": true
+    },
+    {
+      "query": "last time i committed, a stray build folder went in with it and i only noticed about a week later. before i pull the trigger this time i want to actually see that what's staged is exactly what i think it is",
+      "should_trigger": true
+    },
+    {
+      "query": "i've finished the parse change - three files under src/parse plus one test file. get that in with a decent message explaining why, and leave the remote completely alone, nobody pushes from this box",
+      "should_trigger": true
+    },
+    {
+      "query": "a commit i made monday is just gone from main after someone rebased, and last week my staged work ended up inside a different session's commit entirely. how do several of us work this repo without eating each other's changes",
+      "should_trigger": false,
+      "why": "Near-miss on concurrent-writers: lost history and coordination between writers, not staging one clean commit."
+    },
+    {
+      "query": "the wrapper folder in my workspace has become a real project of its own and i want it living on github by itself, without dragging the renders or anything sensitive along with it",
+      "should_trigger": false,
+      "why": "Near-miss on repo-extract: carving a folder into its own repo, which is the one place a full staging sweep is correct."
+    },
+    {
+      "query": "i want pushes to main to build the thing once, tag the artifact, and then promote that same artifact through staging rather than rebuilding it at every stage",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: what happens after a commit lands, not how the commit is assembled."
+    },
+    {
+      "query": "i'm done for the day - write up what changed, what i actually verified versus assumed, and what's still open for the next person, and keep the durable bits somewhere they'll resurface",
+      "should_trigger": false,
+      "why": "Near-miss on handoff: the completion record, which sits alongside the commit but is a different artifact."
+    },
+    {
+      "query": "i want something that automatically stops anyone committing a key or a token into this repo, ideally before it ever reaches a branch anyone else can see",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: a machine-enforced rule in the review pipeline, not the discipline of one deliberate commit."
+    }
+  ]
+}

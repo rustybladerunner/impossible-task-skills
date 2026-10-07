@@ -1,0 +1,51 @@
+{
+  "skill_name": "grill-yourself",
+  "note": "The mirror sibling is grill-me: identical question inventory, opposite direction of spend - grill-me fires when the operator is present and volunteering to decide, grill-yourself when the operator's attention is what must be protected. Other negatives are near-misses on one-press (execute rather than resolve questions), five-ways (a stuck bug, one rung of the ladder), skip-cost (an adoption verdict) and handoff (recording decisions at the end of work).",
+  "queries": [
+    {
+      "query": "before you bring me any questions at all, go and answer everything you can yourself - the readme, the old decision notes, grep the code, run the thing. i only want whatever is left after that, with what you found attached to it",
+      "should_trigger": true
+    },
+    {
+      "query": "big piece of work coming and the plan is full of holes. work out what's genuinely undecided in it, and anywhere something is reversible and low risk just pick sensibly and note the choice rather than stalling the whole run on me",
+      "should_trigger": true
+    },
+    {
+      "query": "you asked me the port number and the output format last time, both of which are written down in the project readme. that isn't a decision, that's a lookup, and it should never have reached me in the first place",
+      "should_trigger": true
+    },
+    {
+      "query": "if you're going to assume something because you couldn't find an answer anywhere, i want that assumption written down somewhere i can skim later, so i can overrule it cheaply instead of discovering it three days on",
+      "should_trigger": true
+    },
+    {
+      "query": "i'm out for the rest of the day. push this as far as you can on your own and only leave me the things that involve money, anything that goes public, or anything you genuinely can't undo afterwards",
+      "should_trigger": true
+    },
+    {
+      "query": "right, i'm here and i've got twenty minutes. hit me with everything you need decided - multiple choice, batched up, with your recommendation on each one, and i'll answer the lot right now",
+      "should_trigger": false,
+      "why": "Near-miss on grill-me: the operator is present and explicitly spending their attention, which is the case grill-yourself exists to avoid needing."
+    },
+    {
+      "query": "the directive is clear enough as it stands. take the single most useful next thing on this project, carry it end to end until there's something real on disk, and write down what came of it so the following run isn't starting cold again",
+      "should_trigger": false,
+      "why": "Near-miss on one-press: nothing here is undecided, so there is no inventory to burn down - the ask is one unit of work chosen, finished and recorded."
+    },
+    {
+      "query": "i've thrown three separate fixes at this crash and it keeps coming back in a slightly different place each time. i need to stop guessing at it and come at the thing a completely different way",
+      "should_trigger": false,
+      "why": "Near-miss on five-ways: a stuck bug is one rung of the resolution ladder, not the whole inventory pass."
+    },
+    {
+      "query": "someone's pushing hard for us to move onto this new agent runtime that launched last month. work out whether that's actually worth doing and give me a straight verdict rather than a maybe",
+      "should_trigger": false,
+      "why": "Near-miss on skip-cost: a single adoption call with its own filter, not a directive full of unresolved steering questions."
+    },
+    {
+      "query": "session's ending - capture what's durable out of it so a future session doesn't rediscover the same three things, and write the summary for whoever's next on this",
+      "should_trigger": false,
+      "why": "Near-miss on handoff: recording what was decided and learned at the end, rather than resolving what is still open before starting."
+    }
+  ]
+}

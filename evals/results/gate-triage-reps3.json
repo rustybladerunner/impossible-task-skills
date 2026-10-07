@@ -1,0 +1,226 @@
+{
+  "floor": 0.67,
+  "reps": 3,
+  "report": [
+    {
+      "skill": "gate-triage",
+      "tp": 11,
+      "fn": 0,
+      "tn": 9,
+      "fp": 0,
+      "recall": 1,
+      "specificity": 1,
+      "errored": 4,
+      "suspicion": null,
+      "byQuery": [
+        {
+          "query": "our CI has been failing for about two weeks now and everyone just merges anyway. there are four separate checks red, two of them i think are the linter's own fault. how do i dig out of this",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "the test suite on main went red on friday and nobody can tell me whether it's a real regression or the flaky snapshot thing again. i need to work out what's actually broken before i start fixing things",
+          "should": true,
+          "runs": 2,
+          "fired": 2,
+          "errored": 1,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "we have a lint rule that fires on like 800 files in the legacy folder and it's drowning out everything else in the PR checks. tempted to just add an ignore for that whole directory, is that dumb",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "before i ship this hotfix i want to route around the red build check - it's been broken since before my change and i don't think it's related to me. talk me out of it or tell me it's fine",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "set up github actions for this repo - node 22, run npm test on PRs and pushes to main, cache the deps. nothing fancy",
+          "should": false,
+          "runs": 1,
+          "fired": 0,
+          "errored": 2,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "our PR bot comments way too much, people have started ignoring it entirely. i want to cut the rules down to ones that actually catch bugs",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "this one integration test fails maybe one run in five on CI and passes locally every single time. it's the one that hits the postgres container",
+          "should": false,
+          "runs": 2,
+          "fired": 0,
+          "errored": 1,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "the deploy step in our pipeline is taking 11 minutes and most of it looks like it's rebuilding the docker image from scratch every time. can we make that faster",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        }
+      ],
+      "results": [
+        {
+          "query": "our CI has been failing for about two weeks now and everyone just merges anyway. there are four separate checks red, two of them i think are the linter's own fault. how do i dig out of this",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "our CI has been failing for about two weeks now and everyone just merges anyway. there are four separate checks red, two of them i think are the linter's own fault. how do i dig out of this",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "our CI has been failing for about two weeks now and everyone just merges anyway. there are four separate checks red, two of them i think are the linter's own fault. how do i dig out of this",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the test suite on main went red on friday and nobody can tell me whether it's a real regression or the flaky snapshot thing again. i need to work out what's actually broken before i start fixing things",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the test suite on main went red on friday and nobody can tell me whether it's a real regression or the flaky snapshot thing again. i need to work out what's actually broken before i start fixing things",
+          "should": true,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "the test suite on main went red on friday and nobody can tell me whether it's a real regression or the flaky snapshot thing again. i need to work out what's actually broken before i start fixing things",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "we have a lint rule that fires on like 800 files in the legacy folder and it's drowning out everything else in the PR checks. tempted to just add an ignore for that whole directory, is that dumb",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "we have a lint rule that fires on like 800 files in the legacy folder and it's drowning out everything else in the PR checks. tempted to just add an ignore for that whole directory, is that dumb",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "we have a lint rule that fires on like 800 files in the legacy folder and it's drowning out everything else in the PR checks. tempted to just add an ignore for that whole directory, is that dumb",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "before i ship this hotfix i want to route around the red build check - it's been broken since before my change and i don't think it's related to me. talk me out of it or tell me it's fine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "before i ship this hotfix i want to route around the red build check - it's been broken since before my change and i don't think it's related to me. talk me out of it or tell me it's fine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "before i ship this hotfix i want to route around the red build check - it's been broken since before my change and i don't think it's related to me. talk me out of it or tell me it's fine",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "set up github actions for this repo - node 22, run npm test on PRs and pushes to main, cache the deps. nothing fancy",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "set up github actions for this repo - node 22, run npm test on PRs and pushes to main, cache the deps. nothing fancy",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "set up github actions for this repo - node 22, run npm test on PRs and pushes to main, cache the deps. nothing fancy",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on ci-cd-pipelines: building a pipeline, not triaging a red one."
+        },
+        {
+          "query": "our PR bot comments way too much, people have started ignoring it entirely. i want to cut the rules down to ones that actually catch bugs",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: tuning review automation, not classifying failures in a suite."
+        },
+        {
+          "query": "our PR bot comments way too much, people have started ignoring it entirely. i want to cut the rules down to ones that actually catch bugs",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: tuning review automation, not classifying failures in a suite."
+        },
+        {
+          "query": "our PR bot comments way too much, people have started ignoring it entirely. i want to cut the rules down to ones that actually catch bugs",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: tuning review automation, not classifying failures in a suite."
+        },
+        {
+          "query": "this one integration test fails maybe one run in five on CI and passes locally every single time. it's the one that hits the postgres container",
+          "should": false,
+          "fired": false,
+          "why": "A single flaky test is a debugging problem; gate-triage is about a suite whose red has stopped meaning anything."
+        },
+        {
+          "query": "this one integration test fails maybe one run in five on CI and passes locally every single time. it's the one that hits the postgres container",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "this one integration test fails maybe one run in five on CI and passes locally every single time. it's the one that hits the postgres container",
+          "should": false,
+          "fired": false,
+          "why": "A single flaky test is a debugging problem; gate-triage is about a suite whose red has stopped meaning anything."
+        },
+        {
+          "query": "the deploy step in our pipeline is taking 11 minutes and most of it looks like it's rebuilding the docker image from scratch every time. can we make that faster",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on ci-cd-pipelines: pipeline performance, and nothing is failing."
+        },
+        {
+          "query": "the deploy step in our pipeline is taking 11 minutes and most of it looks like it's rebuilding the docker image from scratch every time. can we make that faster",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on ci-cd-pipelines: pipeline performance, and nothing is failing."
+        },
+        {
+          "query": "the deploy step in our pipeline is taking 11 minutes and most of it looks like it's rebuilding the docker image from scratch every time. can we make that faster",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on ci-cd-pipelines: pipeline performance, and nothing is failing."
+        }
+      ]
+    }
+  ]
+}

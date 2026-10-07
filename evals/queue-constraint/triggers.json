@@ -1,0 +1,51 @@
+{
+  "skill_name": "queue-constraint",
+  "note": "Negatives are near-misses against perf-pass, grill-me, gate-triage, ci-cd-pipelines and baseline-first. queue-constraint fires when the question is WHICH stage of a work pipeline is starved and whether to build more of it; perf-pass owns the identically-worded find-the-bottleneck-by-measuring-first question when the stages are code in a running program rather than items waiting to be picked up, grill-me owns items blocked on an operator decision, gate-triage owns a red check suite, ci-cd-pipelines owns build/deploy throughput, and baseline-first owns the same measure-before-you-build instinct pointed at a system's own instrumentation, captured as a comparable before-state, rather than at queue depths — that pair is the sharpest near-miss in this cluster and each set carries the other as a negative. one-press is deliberately not used as a negative here: the only way to write one was to open with 'stop analysing the queue', which announces its own answer and tests nothing — that pair is covered from one-press's own set.",
+  "queries": [
+    {
+      "query": "180-odd things sat in the inbox, and yesterday the runner did exactly one job and spent about a dollar of a two hundred dollar ceiling. everyone's conclusion is that we need to find more work for it. that reads completely wrong to me but i can't articulate why",
+      "should_trigger": true
+    },
+    {
+      "query": "i'm about to bolt on another crawler that trawls the repo and files whatever it turns up. before i build the thing - is that going to help anything, or am i just going to make the pile bigger and slower to read",
+      "should_trigger": true
+    },
+    {
+      "query": "the agents keep pulling items off the ready column, doing something vaguely in the area, and then declaring it done. going back through the tickets afterwards, most of them never said what finished was supposed to look like",
+      "should_trigger": true
+    },
+    {
+      "query": "the top item in ready has been sat there a fortnight. turns out everything left on it is me clicking publish on an account the agent can't touch, so it gets picked up, stalls out, and gets picked up again the next night",
+      "should_trigger": true
+    },
+    {
+      "query": "the thing that files candidates has produced 186 rows. i actually read the titles this morning and half of them are cut off mid sentence, one idea appears five separate times, and one of them contains a raw regex. do i promote from this or bin the lot",
+      "should_trigger": true
+    },
+    {
+      "query": "our nightly import runs about forty minutes end to end and it's three stages, pull the files down, transform them, load them in. i want to know which of the three is actually eating the time before anyone signs off on a bigger box for it. stage two pins a core the whole way through if that means anything",
+      "should_trigger": false,
+      "why": "Near-miss on perf-pass: word for word the same which-stage-is-the-bottleneck-measure-it-first question, but the stages are code in one running program and the answer is wall-clock cost, not a queue whose discovery, promotion or execution is starved — nothing here is waiting to be picked up."
+    },
+    {
+      "query": "a bunch of our backlog items are stuck because they need a call from me and nobody's ever asked me for it. get the decisions out of me in one batch so the things behind them can unstick",
+      "should_trigger": false,
+      "why": "Near-miss on grill-me: the operator is offering to unblock decisions, which is a grilling pass rather than a pipeline diagnosis."
+    },
+    {
+      "query": "four checks have been red for a fortnight, some of them are the tooling's own fault, some might be real, and everyone just merges past them now. how do i sort that out properly",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: a red check suite, not a work queue whose stages need measuring."
+    },
+    {
+      "query": "builds sit waiting twenty minutes for a free runner and the deploy stage rebuilds the docker image from scratch every single time. our pipeline throughput is genuinely embarrassing at this point",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: a build pipeline's capacity and caching, not a discovery/promotion/execution work queue."
+    },
+    {
+      "query": "before i rework how the runner picks items up i want whatever our existing harness already reports written down properly and committed somewhere, so that when i'm done i can actually show the change did something rather than just asserting it in a summary",
+      "should_trigger": false,
+      "why": "Near-miss on baseline-first: the same measure-before-you-touch-it instinct, but what is being captured is a comparable before-state for a change, not the depth of discovery, promotion and execution."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "impossible-task",
+  "description": "Agent skills from Impossible Task.",
+  "owner": {
+    "name": "Impossible Task"
+  },
+  "plugins": [
+    {
+      "name": "impossible-task-skills",
+      "description": "Method skills for agent work. Measure before you change a system. Choose one attack when a fix fails twice. Ask only the questions that block the work. Commit only your own changes. Prove each result with an artifact.",
+      "author": {
+        "name": "Impossible Task"
+      },
+      "category": "development",
+      "keywords": [
+        "method",
+        "debugging",
+        "review",
+        "git",
+        "agents",
+        "decision-making"
+      ],
+      "source": "./"
+    }
+  ]
+}

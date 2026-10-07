@@ -1,0 +1,51 @@
+{
+  "skill_name": "perspective-gate",
+  "note": "Negatives are near-misses against automated-code-review, five-ways, grill-me, seams-and-modularity and gate-triage. perspective-gate owns a human-run pass of several independent rubrics over one target, with a survival rule; automated-code-review owns machine review in CI, five-ways owns picking an attack on a stuck bug, grill-me owns questions aimed at the operator, seams-and-modularity owns where a split should actually fall, and gate-triage owns a check suite whose findings have stopped meaning anything.",
+  "queries": [
+    {
+      "query": "about to commit to this ingest architecture and i'm far too close to it to see the holes any more. i want it pulled apart from several independent directions - somebody worrying about cost, somebody about failure modes - not one generic looks fine to me",
+      "should_trigger": true
+    },
+    {
+      "query": "i had this idea of running the design past a carmack review and a dhh review as personas to get different reactions. a colleague reckons that's basically putting words in real people's mouths. is there a version of this that isn't gross",
+      "should_trigger": true
+    },
+    {
+      "query": "whenever i ask for a multi-direction review i get back forty findings, a decent chunk of them invented, and a score out of ten that tells me nothing at all. i need something short where i can trust every line of it",
+      "should_trigger": true
+    },
+    {
+      "query": "i've written three review checklists for the team and they never say no to anything - everything passes all three every time. what actually makes one of these sharp instead of just a list of pleasant sounding questions",
+      "should_trigger": true
+    },
+    {
+      "query": "i ran all my reviewers in a single pass and they immediately converged on the same three points, which felt completely worthless. also i've got no idea when to run the thing - doing it on every commit seems mad",
+      "should_trigger": true
+    },
+    {
+      "query": "want a bot on our pull requests, and we need to introduce a new rule across a legacy codebase without turning the first week into 900 red comments nobody reads",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: machine-decidable rules in CI, not independent judgment rubrics run by hand."
+    },
+    {
+      "query": "this bug has survived two direct fixes now and i keep doing basically the same thing with slight variations. i need to come at it from somewhere else entirely before i waste another afternoon",
+      "should_trigger": false,
+      "why": "Near-miss on five-ways: multiple angles on a stuck bug is approach selection, not reviewing a target through rubrics."
+    },
+    {
+      "query": "i'm available for the next half hour - ask me the things you need decided about this project and give me actual options rather than open ended questions i have to think about",
+      "should_trigger": false,
+      "why": "Near-miss on grill-me: the interrogation is pointed at the operator, not at an artifact under review."
+    },
+    {
+      "query": "we're about to split this 2,500 line service into modules and i want to know where the cuts should genuinely fall before anyone starts dragging files around",
+      "should_trigger": false,
+      "why": "Near-miss on seams-and-modularity: perspective-gate runs before a large refactor, but the actual question here is where a boundary belongs."
+    },
+    {
+      "query": "half our checks have been red for a fortnight and a good chunk of what they file is the tool misreading the code entirely. people have stopped acting on any of it. i need the genuine ones separated out before i can start fixing anything",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: classifying the failures of a suite that is already red and has stopped meaning anything, not running a deliberate multi-rubric pass over a target."
+    }
+  ]
+}

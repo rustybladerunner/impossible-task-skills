@@ -1,0 +1,51 @@
+{
+  "skill_name": "skip-cost",
+  "note": "Negatives are near-misses against geo-data-sourcing, api-integration, automated-code-review, perspective-gate and seams-and-modularity. skip-cost owns the verdict on whether to take on a new tool, model, framework or repo at all - including the licence and liveness check on the artifact behind the hype. The siblings own what happens once that decision is already made, or the same words applied to a dataset, a rule, a design, or code isolation.",
+  "queries": [
+    {
+      "query": "someone in our discord will not shut up about this new agent framework - apparently we'd be ripping out our own retry, tracing and config layer to take it on, and it's got 8k stars in nine days. do we jump on it or is this the same story as last month and the month before",
+      "should_trigger": true
+    },
+    {
+      "query": "pasting a thread someone forwarded me - it's all the unfireable engineer, build it this weekend, tag me when you ship. is there anything actually in it or should i just not be pulling todo items out of this sort of thing at all",
+      "should_trigger": true
+    },
+    {
+      "query": "found a repo that does exactly the mesh decimation i need but github's sidebar shows no licence on it whatsoever. that's an automatic no from me isn't it, or is there more i should be checking before i write it off",
+      "should_trigger": true
+    },
+    {
+      "query": "three new local model runners shipped this month and everyone else seems to have already moved onto them. we haven't touched any of it. how do i work out whether standing still here actually costs us anything real",
+      "should_trigger": true
+    },
+    {
+      "query": "we argued about switching to bun three months ago, decided against it, and now it's back on the table and nobody can remember the reasoning. how do i stop this exact thing being re-fought every quarter",
+      "should_trigger": true
+    },
+    {
+      "query": "found a parcel layer on the county open data portal that looks about right. before i build anything on top of it i need to know whether we're allowed to use it and how stale the thing actually is",
+      "should_trigger": false,
+      "why": "Near-miss on geo-data-sourcing: licence and currency questions, but about a dataset rather than a tool being adopted."
+    },
+    {
+      "query": "we've settled on stripe. now i need to get the token refresh, the retry behaviour and the webhook replay handling right before any of this goes near production",
+      "should_trigger": false,
+      "why": "Near-miss on api-integration: the adoption decision is already made; the work is integrating against it safely."
+    },
+    {
+      "query": "should this new complexity rule be advisory or actually block merges, and how do we introduce it on a codebase that would fail it four hundred times on day one",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: a should-we-adopt shape, but about a lint rule and its rollout, which that skill owns."
+    },
+    {
+      "query": "before we commit to this design i want it torn apart from a few independent directions, and i only want to hear the objections that actually survive being challenged",
+      "should_trigger": false,
+      "why": "Near-miss on perspective-gate: a pre-commitment review of our own design, not a verdict on somebody else's tool."
+    },
+    {
+      "query": "if we do pull in that pdf library, how do i keep it from spreading into every file so we can swap it out later without a full rewrite",
+      "should_trigger": false,
+      "why": "Near-miss on seams-and-modularity: isolating a dependency you do not control, which is downstream of the adoption verdict."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "skill_name": "grill-me",
+  "note": "The hardest sibling is grill-yourself: both are about unresolved questions, but grill-me fires when the HUMAN is present and offering to decide, while grill-yourself fires when the questions should be burned down without them. Other negatives are near-misses on one-press (act without asking), queue-constraint (badly formed queue items), perspective-gate (interrogate an artifact, not a person) and handoff (record decisions at the end).",
+  "queries": [
+    {
+      "query": "i'm at my desk for the next twenty minutes so use me properly. what is actually holding the map viewer up right now? don't write me an essay and don't come back in an hour with another one of these - get everything you need out of me while i'm sat here",
+      "should_trigger": true
+    },
+    {
+      "query": "you keep stopping every ten minutes to check one small thing with me and it's wrecking the flow completely. get everything you need out of me in one sitting right now, then go and do the whole thing without coming back to me",
+      "should_trigger": true
+    },
+    {
+      "query": "i'm about to hand over a directive that's going to run for hours across three different projects and there are taste calls buried in it that only i can make. don't just start on it - pin those down with me first",
+      "should_trigger": true
+    },
+    {
+      "query": "last session you asked me a load of things and then next session asked me half of them all over again. where are those answers supposed to be living so that i'm not sat here deciding the same stuff twice",
+      "should_trigger": true
+    },
+    {
+      "query": "there are about nine items in the backlog tagged TBD or operator decision and everything downstream of them has stalled behind it. sit me down and work through them properly so the queue can start moving again",
+      "should_trigger": true
+    },
+    {
+      "query": "before you come to me with a list, go dig through the specs, the old decision notes and the code and answer everything you possibly can on your own. i only want to see the ones that genuinely need a human being",
+      "should_trigger": false,
+      "why": "Near-miss on grill-yourself: explicitly asking for the questions to be resolved WITHOUT spending the operator's attention."
+    },
+    {
+      "query": "don't ask me anything, i'm not going to be around. just pick the most sensible next piece of work, take it all the way through to something real, and leave a note about what happened",
+      "should_trigger": false,
+      "why": "Near-miss on one-press: an explicit refusal of the interrogation; the need is one unit of work executed unattended."
+    },
+    {
+      "query": "loads of items sat in our ready column but the agents pick them up, do something vaguely adjacent and then declare victory. reading them back, most of them never actually said what finished looks like",
+      "should_trigger": false,
+      "why": "Near-miss on queue-constraint: malformed ready items are a promotion problem, not decisions the operator is holding."
+    },
+    {
+      "query": "take this architecture doc and pull it apart from a few independent directions - cost, failure modes, someone who hates the whole premise - and only tell me the objections that actually hold up",
+      "should_trigger": false,
+      "why": "Near-miss on perspective-gate: the hard questions are aimed at an artifact under review, not at the operator."
+    },
+    {
+      "query": "we made a pile of decisions this session. write them up along with what changed and what's still open, for whoever picks this up next week",
+      "should_trigger": false,
+      "why": "Near-miss on handoff: recording decisions already made, rather than extracting ones still outstanding."
+    }
+  ]
+}

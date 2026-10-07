@@ -1,0 +1,51 @@
+{
+  "skill_name": "reference-match-loop",
+  "note": "Negatives are near-misses against ui-validate (how to build, serve and capture — the mechanics this skill assumes), fragile-visual-ui (which defects to hunt), gate-triage, baseline-first and automated-code-review. This skill owns only the closing condition: a capture compared against a reference, and a validator proven able to fail. Every positive therefore names a reference that nothing has been compared to, or a validator that has never gone red. A bare 'it compiled and i was about to call it done' is NOT usable here — that sentence is ui-validate's own frontmatter trigger, and a positive built on it makes the two skills a coin flip.",
+  "queries": [
+    {
+      "query": "i keep telling him the retarget is fixed because unreal reports it succeeded and all the skeleton names match, then he opens the level and the arms are through the torso. third time now. what should i be requiring of myself before i say it's done",
+      "should_trigger": true
+    },
+    {
+      "query": "we have a canary script that checks each export and it has come back green on every run for two weeks, including the two runs that i know for a fact produced garbage. i'm starting to think it isn't actually looking at anything that can break",
+      "should_trigger": true
+    },
+    {
+      "query": "someone asked me whether the panel matches the design and all i can honestly say is that it hasn't changed since the last snapshot. those snapshots were recorded from whatever happened to be on screen the day we set the suite up",
+      "should_trigger": true
+    },
+    {
+      "query": "i took a screenshot of the character to show the rig is fine and it looked right to me, but that was the idle pose because that's what the viewport was sitting on. is one still enough here or am i kidding myself about what it proves",
+      "should_trigger": true
+    },
+    {
+      "query": "about to write the hud restyle up as done. what i have is the theme values printing back exactly as i set them and a screenshot-diff job that has never once gone red since we added it. the designer's mock is in the ticket and nobody has held the two up together",
+      "should_trigger": true
+    },
+    {
+      "query": "how do i actually get a picture of this thing running - the dev server config is in vite.config, i'm not sure which port it ends up on, and the screenshot call hangs forever because the canvas never stops drawing frames",
+      "should_trigger": false,
+      "why": "Near-miss on ui-validate: the mechanics of build, serve and capture; this skill starts once you have a capture in hand."
+    },
+    {
+      "query": "it looks right in my browser but i know it'll fall over with long names, on a phone in landscape, and probably in dark mode. what are the specific things worth checking before this goes anywhere near a customer",
+      "should_trigger": false,
+      "why": "Near-miss on fragile-visual-ui: the catalogue of content and environment failures to hunt, not the rule about what counts as done."
+    },
+    {
+      "query": "four checks red on main, two i'm fairly confident are the tool's own fault and two might be real debt. how do i sort them out without just suppressing the noisy ones and pretending the problem went away",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: classifying failures in a red suite, rather than deciding what evidence closes a task."
+    },
+    {
+      "query": "before the refactor i want to commit the current benchmark numbers so we can diff them properly afterwards. the suite already emits a pile of timings that we have never once saved anywhere durable",
+      "should_trigger": false,
+      "why": "Near-miss on baseline-first: recording the starting state, which this skill explicitly says is a progress signal and not a correctness reference."
+    },
+    {
+      "query": "the review bot's findings are wrong maybe a third of the time and the authors have to spend their afternoon disproving them. i want to gate what it's allowed to post so people start reading it again",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: filtering what an automated reviewer publishes to people, not proving a validator can fail before trusting its green."
+    }
+  ]
+}

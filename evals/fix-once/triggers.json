@@ -1,0 +1,52 @@
+{
+  "skill_name": "fix-once",
+  "note": "The signal is a defect that has JUST been fixed or is about to be, where nothing yet stops it recurring. Negatives are adjacent testing work that is not about locking one bug shut - gate-triage owns a red suite, automated-code-review owns rule rollout, seams-and-modularity owns testability, reference-match-loop owns proving a validator can fail.",
+  "queries": [
+    {
+      "query": "ok that's the third time this month someone's reintroduced the same off-by-one in the pagination helper. i've fixed it again but clearly writing it in the PR description isn't working",
+      "should_trigger": true
+    },
+    {
+      "query": "just patched a nasty one - our env var parser was silently returning undefined for keys with underscores so half the config was ignored. fix is in, what should i do so this can't come back",
+      "should_trigger": true
+    },
+    {
+      "query": "i keep wanting to add a line to CONTRIBUTING.md saying 'never call this constructor directly' but honestly nobody reads it. is there a better way to make that stick",
+      "should_trigger": true
+    },
+    {
+      "query": "found and fixed the bug where the retry loop swallowed the original exception. before i open the PR i want something in the suite that would have caught it",
+      "should_trigger": true
+    },
+    {
+      "query": "our CI has been red for two weeks with four different failures and people just merge past it now. where do i even start",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: an existing suite whose red has stopped meaning anything, not locking one fixed bug shut."
+    },
+    {
+      "query": "want to roll out a new eslint rule across the whole monorepo but it fires on about 900 files in packages/legacy. how do i introduce it without a giant flag-day PR",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: adopting a rule on legacy code, no specific defect being sealed."
+    },
+    {
+      "query": "this OrderProcessor class is 3000 lines and reaches out to the payment gateway in its constructor so i can't get it under test at all. where do i cut it",
+      "should_trigger": false,
+      "why": "Near-miss on seams-and-modularity: making code testable in general, not gating one bug."
+    },
+    {
+      "query": "what's the difference between a unit test and an integration test, and roughly what ratio should we be aiming for",
+      "should_trigger": false,
+      "why": "A general testing-philosophy question with no defect in play."
+    },
+    {
+      "query": "i've got a csv of house prices with square footage, bedrooms and postcode. can you fit a regression model and tell me which variable actually explains the price",
+      "should_trigger": false,
+      "why": "Statistical regression. Kept as a negative because the surrounding domain is full of it and a bug-prevention skill must never surface for data modelling - this case is why the skill is not called regression-anything."
+    },
+    {
+      "query": "our nightly job runs a regression suite against last week's baseline images and reports the diff. it's been passing but i don't trust it",
+      "should_trigger": false,
+      "why": "Near-miss: an existing regression SUITE being distrusted is reference-match-loop (prove the validator fails on known-bad), not sealing a specific fixed bug."
+    }
+  ]
+}

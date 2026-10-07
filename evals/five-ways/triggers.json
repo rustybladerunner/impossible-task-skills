@@ -1,0 +1,56 @@
+{
+  "skill_name": "five-ways",
+  "note": "Negatives are near-misses against network-path-debug, seams-and-modularity, fix-once, gate-triage, perf-pass and perspective-gate. five-ways fires when direct attempts have already failed and the choice of APPROACH is the open question; those siblings each own a domain where the approach is already settled - test the layers in order, put a seam around the clock, write the check after the fix, classify a red suite, or profile before optimising. perspective-gate is the sharpest of them: it shares the whole 'come at it from a different angle' vocabulary but aims it at an artifact under review rather than a bug that has survived a fix, so each set carries the other as a negative.",
+  "queries": [
+    {
+      "query": "third go at this now. every time i think i've cornered the null deref i tighten a guard, rerun it, and it pops out somewhere slightly different. i'm just changing lines and hoping at this point and i've burned most of the afternoon on it",
+      "should_trigger": true
+    },
+    {
+      "query": "i keep half-starting one idea, abandoning it after five minutes when it doesn't obviously work, and jumping to the next one. four dropped attempts in now and i couldn't tell you which of them was closest. how do i stop doing this to myself every time something gets hard",
+      "should_trigger": true
+    },
+    {
+      "query": "spent two hours on a task and only just worked out the real obstacle is that the licence forbids what we want, so nothing i write was ever going to move it. i want some habit that catches this was never mine to move at the start rather than after the fact",
+      "should_trigger": true
+    },
+    {
+      "query": "the ticket says fix the sanitiser that's mangling the export, but i've grepped the entire repo and nothing calls that sanitiser at all. do i force the ticket through as written or is the fact that it's wrong actually the result here",
+      "should_trigger": true
+    },
+    {
+      "query": "the code reads correct, two of us have stared at it for an hour, and it still produces the wrong total. someone suggested feeding it deliberately broken input to see the shape of the failure instead of more staring. how do i pick between that and just adding a load more logging",
+      "should_trigger": true
+    },
+    {
+      "query": "the api call works fine from my laptop but times out from inside the container, and i've spent an hour randomly changing dns settings and firewall rules with no idea which layer is even the problem",
+      "should_trigger": false,
+      "why": "Near-miss on network-path-debug: the approach is already known (test the layers in order); this is not an approach-selection problem."
+    },
+    {
+      "query": "this test fails maybe one run in fifty and it's because the function reads the wall clock directly and generates its own uuids inside itself. i can't pin either of those from outside the call",
+      "should_trigger": false,
+      "why": "Near-miss on seams-and-modularity: the cause is already identified and the fix is a seam around the clock and id generation."
+    },
+    {
+      "query": "found it, fixed it, verified it by hand. now how do i make sure nobody quietly reintroduces the same thing in six months when they next touch that file",
+      "should_trigger": false,
+      "why": "Near-miss on fix-once: the problem is solved and the need is a check that keeps it solved."
+    },
+    {
+      "query": "we've got a lint suite where about half the failures are the tool's own fault and the rest might be genuine debt. i need to sort out which is which before i touch a single line",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: classifying failures in a red suite, not choosing an attack on a stuck bug."
+    },
+    {
+      "query": "the import takes about 90 seconds and i need it under 20. i haven't profiled it yet, i was just going to start by rewriting the parse loop since that's the obvious suspect",
+      "should_trigger": false,
+      "why": "Near-miss on perf-pass: an unmeasured performance target with no failed attempts behind it."
+    },
+    {
+      "query": "we're a week off committing to this ingest design. i've read it through three times myself and keep coming back with the same three comments, which tells me i'm not seeing it fresh any more. i want other people coming at it from directions i wouldn't think of, and only the objections that hold up",
+      "should_trigger": false,
+      "why": "Near-miss on perspective-gate: 'come at it from another angle' pointed at an artifact before a decision, with a survival rule for the findings - not an attack chosen against a bug that has survived direct fixes."
+    }
+  ]
+}

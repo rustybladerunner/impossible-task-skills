@@ -1,0 +1,281 @@
+{
+  "floor": 0.67,
+  "reps": 3,
+  "report": [
+    {
+      "skill": "fix-once",
+      "tp": 10,
+      "fn": 0,
+      "tn": 16,
+      "fp": 0,
+      "recall": 1,
+      "specificity": 1,
+      "errored": 4,
+      "suspicion": null,
+      "byQuery": [
+        {
+          "query": "ok that's the third time this month someone's reintroduced the same off-by-one in the pagination helper. i've fixed it again but clearly writing it in the PR description isn't working",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "just patched a nasty one - our env var parser was silently returning undefined for keys with underscores so half the config was ignored. fix is in, what should i do so this can't come back",
+          "should": true,
+          "runs": 2,
+          "fired": 2,
+          "errored": 1,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "i keep wanting to add a line to CONTRIBUTING.md saying 'never call this constructor directly' but honestly nobody reads it. is there a better way to make that stick",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "found and fixed the bug where the retry loop swallowed the original exception. before i open the PR i want something in the suite that would have caught it",
+          "should": true,
+          "runs": 2,
+          "fired": 2,
+          "errored": 1,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "our CI has been red for two weeks with four different failures and people just merge past it now. where do i even start",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "want to roll out a new eslint rule across the whole monorepo but it fires on about 900 files in packages/legacy. how do i introduce it without a giant flag-day PR",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "this OrderProcessor class is 3000 lines and reaches out to the payment gateway in its constructor so i can't get it under test at all. where do i cut it",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "what's the difference between a unit test and an integration test, and roughly what ratio should we be aiming for",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "i've got a csv of house prices with square footage, bedrooms and postcode. can you fit a regression model and tell me which variable actually explains the price",
+          "should": false,
+          "runs": 1,
+          "fired": 0,
+          "errored": 2,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "our nightly job runs a regression suite against last week's baseline images and reports the diff. it's been passing but i don't trust it",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        }
+      ],
+      "results": [
+        {
+          "query": "ok that's the third time this month someone's reintroduced the same off-by-one in the pagination helper. i've fixed it again but clearly writing it in the PR description isn't working",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "ok that's the third time this month someone's reintroduced the same off-by-one in the pagination helper. i've fixed it again but clearly writing it in the PR description isn't working",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "ok that's the third time this month someone's reintroduced the same off-by-one in the pagination helper. i've fixed it again but clearly writing it in the PR description isn't working",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "just patched a nasty one - our env var parser was silently returning undefined for keys with underscores so half the config was ignored. fix is in, what should i do so this can't come back",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "just patched a nasty one - our env var parser was silently returning undefined for keys with underscores so half the config was ignored. fix is in, what should i do so this can't come back",
+          "should": true,
+          "errored": true,
+          "why": "There's no project code in this directory, so I can't wire the check up for you — here's the procedure, and one thing you've already lost that's recoverable.\n\n## The problem with writing the test now\n"
+        },
+        {
+          "query": "just patched a nasty one - our env var parser was silently returning undefined for keys with underscores so half the config was ignored. fix is in, what should i do so this can't come back",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i keep wanting to add a line to CONTRIBUTING.md saying 'never call this constructor directly' but honestly nobody reads it. is there a better way to make that stick",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i keep wanting to add a line to CONTRIBUTING.md saying 'never call this constructor directly' but honestly nobody reads it. is there a better way to make that stick",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i keep wanting to add a line to CONTRIBUTING.md saying 'never call this constructor directly' but honestly nobody reads it. is there a better way to make that stick",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "found and fixed the bug where the retry loop swallowed the original exception. before i open the PR i want something in the suite that would have caught it",
+          "should": true,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "found and fixed the bug where the retry loop swallowed the original exception. before i open the PR i want something in the suite that would have caught it",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "found and fixed the bug where the retry loop swallowed the original exception. before i open the PR i want something in the suite that would have caught it",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "our CI has been red for two weeks with four different failures and people just merge past it now. where do i even start",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on gate-triage: an existing suite whose red has stopped meaning anything, not locking one fixed bug shut."
+        },
+        {
+          "query": "our CI has been red for two weeks with four different failures and people just merge past it now. where do i even start",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on gate-triage: an existing suite whose red has stopped meaning anything, not locking one fixed bug shut."
+        },
+        {
+          "query": "our CI has been red for two weeks with four different failures and people just merge past it now. where do i even start",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on gate-triage: an existing suite whose red has stopped meaning anything, not locking one fixed bug shut."
+        },
+        {
+          "query": "want to roll out a new eslint rule across the whole monorepo but it fires on about 900 files in packages/legacy. how do i introduce it without a giant flag-day PR",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: adopting a rule on legacy code, no specific defect being sealed."
+        },
+        {
+          "query": "want to roll out a new eslint rule across the whole monorepo but it fires on about 900 files in packages/legacy. how do i introduce it without a giant flag-day PR",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: adopting a rule on legacy code, no specific defect being sealed."
+        },
+        {
+          "query": "want to roll out a new eslint rule across the whole monorepo but it fires on about 900 files in packages/legacy. how do i introduce it without a giant flag-day PR",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on automated-code-review: adopting a rule on legacy code, no specific defect being sealed."
+        },
+        {
+          "query": "this OrderProcessor class is 3000 lines and reaches out to the payment gateway in its constructor so i can't get it under test at all. where do i cut it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on seams-and-modularity: making code testable in general, not gating one bug."
+        },
+        {
+          "query": "this OrderProcessor class is 3000 lines and reaches out to the payment gateway in its constructor so i can't get it under test at all. where do i cut it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on seams-and-modularity: making code testable in general, not gating one bug."
+        },
+        {
+          "query": "this OrderProcessor class is 3000 lines and reaches out to the payment gateway in its constructor so i can't get it under test at all. where do i cut it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on seams-and-modularity: making code testable in general, not gating one bug."
+        },
+        {
+          "query": "what's the difference between a unit test and an integration test, and roughly what ratio should we be aiming for",
+          "should": false,
+          "fired": false,
+          "why": "A general testing-philosophy question with no defect in play."
+        },
+        {
+          "query": "what's the difference between a unit test and an integration test, and roughly what ratio should we be aiming for",
+          "should": false,
+          "fired": false,
+          "why": "A general testing-philosophy question with no defect in play."
+        },
+        {
+          "query": "what's the difference between a unit test and an integration test, and roughly what ratio should we be aiming for",
+          "should": false,
+          "fired": false,
+          "why": "A general testing-philosophy question with no defect in play."
+        },
+        {
+          "query": "i've got a csv of house prices with square footage, bedrooms and postcode. can you fit a regression model and tell me which variable actually explains the price",
+          "should": false,
+          "errored": true,
+          "why": "The working directory is empty apart from `<assistant-config>` — there's no CSV here for me to read. Can you point me at the file (a path, or paste it)?\n\nTwo things worth deciding up front, since they change wha"
+        },
+        {
+          "query": "i've got a csv of house prices with square footage, bedrooms and postcode. can you fit a regression model and tell me which variable actually explains the price",
+          "should": false,
+          "fired": false,
+          "why": "Statistical regression. Kept as a negative because the surrounding domain is full of it and a bug-prevention skill must never surface for data modelling - this case is why the skill is not called regression-anything."
+        },
+        {
+          "query": "i've got a csv of house prices with square footage, bedrooms and postcode. can you fit a regression model and tell me which variable actually explains the price",
+          "should": false,
+          "errored": true,
+          "why": "I don't have the CSV — the working directory (`<tmp>/trigger-eval-MW2eiW`) contains only an `<assistant-config>` folder, and my attempt to scan Downloads/Desktop/Documents needs"
+        },
+        {
+          "query": "our nightly job runs a regression suite against last week's baseline images and reports the diff. it's been passing but i don't trust it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss: an existing regression SUITE being distrusted is reference-match-loop (prove the validator fails on known-bad), not sealing a specific fixed bug."
+        },
+        {
+          "query": "our nightly job runs a regression suite against last week's baseline images and reports the diff. it's been passing but i don't trust it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss: an existing regression SUITE being distrusted is reference-match-loop (prove the validator fails on known-bad), not sealing a specific fixed bug."
+        },
+        {
+          "query": "our nightly job runs a regression suite against last week's baseline images and reports the diff. it's been passing but i don't trust it",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss: an existing regression SUITE being distrusted is reference-match-loop (prove the validator fails on known-bad), not sealing a specific fixed bug."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "floor": 0.67,
+  "reps": 3,
+  "report": [
+    {
+      "skill": "silent-no-ops",
+      "tp": 12,
+      "fn": 0,
+      "tn": 10,
+      "fp": 0,
+      "recall": 1,
+      "specificity": 1,
+      "errored": 2,
+      "suspicion": null,
+      "byQuery": [
+        {
+          "query": "my python script says it saved the asset, exit code 0, no errors anywhere, but when i open the editor nothing has changed. the file's modified time is from yesterday",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "i've got two copies of basically the same script, one for running headless and one that goes through the plugin socket, and there's a comment in both begging you to keep them in sync. how did we end up here and what should it look like instead",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "the screenshot command returns fine every time but i keep getting the same image back from the first run. i've moved the camera between captures and the png is byte identical",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "set_material returns true and then save_asset does nothing. am i holding it wrong or is the material assignment not marking anything dirty",
+          "should": true,
+          "runs": 3,
+          "fired": 3,
+          "errored": 0,
+          "rate": 1,
+          "flaky": false
+        },
+        {
+          "query": "the script crashes with a KeyError on line 40 when the config is missing the 'targets' key. i want it to fail with something readable instead of a traceback",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "our deploy job is green but the app in production is still on the old version. the rollout says complete in the dashboard",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "i want to add retries to this API client, it fails maybe 2% of the time with a 503 and right now that just bubbles up to the user",
+          "should": false,
+          "runs": 1,
+          "fired": 0,
+          "errored": 2,
+          "rate": 0,
+          "flaky": false
+        },
+        {
+          "query": "how do i check whether a file was actually written in node - is existsSync enough or should i be stat-ing it",
+          "should": false,
+          "runs": 3,
+          "fired": 0,
+          "errored": 0,
+          "rate": 0,
+          "flaky": false
+        }
+      ],
+      "results": [
+        {
+          "query": "my python script says it saved the asset, exit code 0, no errors anywhere, but when i open the editor nothing has changed. the file's modified time is from yesterday",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "my python script says it saved the asset, exit code 0, no errors anywhere, but when i open the editor nothing has changed. the file's modified time is from yesterday",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "my python script says it saved the asset, exit code 0, no errors anywhere, but when i open the editor nothing has changed. the file's modified time is from yesterday",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i've got two copies of basically the same script, one for running headless and one that goes through the plugin socket, and there's a comment in both begging you to keep them in sync. how did we end up here and what should it look like instead",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i've got two copies of basically the same script, one for running headless and one that goes through the plugin socket, and there's a comment in both begging you to keep them in sync. how did we end up here and what should it look like instead",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "i've got two copies of basically the same script, one for running headless and one that goes through the plugin socket, and there's a comment in both begging you to keep them in sync. how did we end up here and what should it look like instead",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the screenshot command returns fine every time but i keep getting the same image back from the first run. i've moved the camera between captures and the png is byte identical",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the screenshot command returns fine every time but i keep getting the same image back from the first run. i've moved the camera between captures and the png is byte identical",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the screenshot command returns fine every time but i keep getting the same image back from the first run. i've moved the camera between captures and the png is byte identical",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "set_material returns true and then save_asset does nothing. am i holding it wrong or is the material assignment not marking anything dirty",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "set_material returns true and then save_asset does nothing. am i holding it wrong or is the material assignment not marking anything dirty",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "set_material returns true and then save_asset does nothing. am i holding it wrong or is the material assignment not marking anything dirty",
+          "should": true,
+          "fired": true
+        },
+        {
+          "query": "the script crashes with a KeyError on line 40 when the config is missing the 'targets' key. i want it to fail with something readable instead of a traceback",
+          "should": false,
+          "fired": false,
+          "why": "A loud, visible failure. This skill is specifically about operations that report success."
+        },
+        {
+          "query": "the script crashes with a KeyError on line 40 when the config is missing the 'targets' key. i want it to fail with something readable instead of a traceback",
+          "should": false,
+          "fired": false,
+          "why": "A loud, visible failure. This skill is specifically about operations that report success."
+        },
+        {
+          "query": "the script crashes with a KeyError on line 40 when the config is missing the 'targets' key. i want it to fail with something readable instead of a traceback",
+          "should": false,
+          "fired": false,
+          "why": "A loud, visible failure. This skill is specifically about operations that report success."
+        },
+        {
+          "query": "our deploy job is green but the app in production is still on the old version. the rollout says complete in the dashboard",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close, but this is a deploy/promotion problem and ci-cd-pipelines owns rollout verification."
+        },
+        {
+          "query": "our deploy job is green but the app in production is still on the old version. the rollout says complete in the dashboard",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close, but this is a deploy/promotion problem and ci-cd-pipelines owns rollout verification."
+        },
+        {
+          "query": "our deploy job is green but the app in production is still on the old version. the rollout says complete in the dashboard",
+          "should": false,
+          "fired": false,
+          "why": "Genuinely close, but this is a deploy/promotion problem and ci-cd-pipelines owns rollout verification."
+        },
+        {
+          "query": "i want to add retries to this API client, it fails maybe 2% of the time with a 503 and right now that just bubbles up to the user",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "i want to add retries to this API client, it fails maybe 2% of the time with a 503 and right now that just bubbles up to the user",
+          "should": false,
+          "errored": true,
+          "why": "run reported is_error"
+        },
+        {
+          "query": "i want to add retries to this API client, it fails maybe 2% of the time with a 503 and right now that just bubbles up to the user",
+          "should": false,
+          "fired": false,
+          "why": "Near-miss on api-integration: a visible, intermittent failure being handled, not a silent success."
+        },
+        {
+          "query": "how do i check whether a file was actually written in node - is existsSync enough or should i be stat-ing it",
+          "should": false,
+          "fired": false,
+          "why": "A narrow how-do-I question. Simple one-step queries do not consult skills, and it needs an answer rather than a procedure."
+        },
+        {
+          "query": "how do i check whether a file was actually written in node - is existsSync enough or should i be stat-ing it",
+          "should": false,
+          "fired": false,
+          "why": "A narrow how-do-I question. Simple one-step queries do not consult skills, and it needs an answer rather than a procedure."
+        },
+        {
+          "query": "how do i check whether a file was actually written in node - is existsSync enough or should i be stat-ing it",
+          "should": false,
+          "fired": false,
+          "why": "A narrow how-do-I question. Simple one-step queries do not consult skills, and it needs an answer rather than a procedure."
+        }
+      ]
+    }
+  ]
+}

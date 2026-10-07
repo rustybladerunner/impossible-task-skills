@@ -1,0 +1,51 @@
+{
+  "skill_name": "one-press",
+  "note": "Negatives are near-misses against queue-constraint, silent-no-ops, gate-triage, handoff and grill-yourself, which all share the unattended-loop vocabulary. one-press owns one repeatable step that picks a single item and finishes it; queue-constraint owns diagnosing WHICH stage of the pipeline is starved, silent-no-ops owns a script whose write never landed, gate-triage owns digging out of a suite that was already red before the loop ever started, handoff owns the write-up at the end, and grill-yourself owns an underspecified directive.",
+  "queries": [
+    {
+      "query": "i've got maybe an hour before this laptop goes back in the bag and the side project has been untouched for eight days. i honestly don't remember where it stands. pick up one thing that's actually finishable and land it, i don't want another plan document out of this",
+      "should_trigger": true
+    },
+    {
+      "query": "our nightly job is meant to take one thing off the backlog and land it. green tick every morning for two and a half weeks, then i checked properly - zero commits in that window, nothing new on disk. the scheduler reads healthy so nobody ever looked. what should it be checking about its own output before it can call itself fine",
+      "should_trigger": true
+    },
+    {
+      "query": "when the runner picks something up it works out on the fly which of our procedures to use, so the same sort of job goes a different way each night depending on its mood. i want the same situation to always end up in the same place, and i want to see the ones it had no procedure for at all",
+      "should_trigger": true
+    },
+    {
+      "query": "every time the loop fires it starts cold - no idea what last night's run touched or whether that even worked - so it keeps picking the same easy job over and over. what should a run write down when it finishes so the following one isn't guessing from scratch",
+      "should_trigger": true
+    },
+    {
+      "query": "my runner kicks off at 2am regardless of what state things are in. last week it started editing files a session had left half finished, and it happily runs when the build is already broken and then reports success anyway. i want it to look around first and just stop with a reason when things aren't sane",
+      "should_trigger": true
+    },
+    {
+      "query": "the inbox has about 180 candidate items in it and the agent ran exactly one job yesterday out of a budget that would have covered fifty. the team's answer is to write another crawler to find more work. that can't be the right move can it",
+      "should_trigger": false,
+      "why": "Near-miss on queue-constraint: the question is which stage of the pipeline is starved, not how to run one unit of work well."
+    },
+    {
+      "query": "my script drives the running blender over its socket, prints export ok and exits zero every single time, and the glb on disk is never touched - same file size, same timestamp as yesterday. what am i doing wrong here",
+      "should_trigger": false,
+      "why": "Near-miss on silent-no-ops: a single script over the wrong transport reporting success, not a loop choosing and finishing work."
+    },
+    {
+      "query": "the overnight runner has refused to touch anything for about ten days because two checks were already failing before it ever started. nobody has looked at those in a month and at least one of them is the tool itself misfiring. i need that pile sorted before anything here can move again",
+      "should_trigger": false,
+      "why": "Near-miss on gate-triage: recording a pre-existing red and refusing is exactly what one press should do, but digging out of a suite that has been red for weeks is gate-triage's job, not the button's."
+    },
+    {
+      "query": "i'm stopping here for the day. four files changed, one thing half done, and there's a surface i never actually tested. write it up so the person opening this tomorrow can act on it without reading the whole transcript",
+      "should_trigger": false,
+      "why": "Near-miss on handoff: closing out and writing for a reviewer, rather than choosing and executing the next unit of work."
+    },
+    {
+      "query": "the directive i've been handed is basically make the viewer good on mobile, which decides nothing. before anyone burns four hours on it, work out what's genuinely open here and answer whatever you can from the specs yourself",
+      "should_trigger": false,
+      "why": "Near-miss on grill-yourself: resolving an underspecified brief, not selecting and finishing one movable item."
+    }
+  ]
+}

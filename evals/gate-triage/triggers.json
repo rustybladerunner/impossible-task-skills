@@ -1,0 +1,47 @@
+{
+  "skill_name": "gate-triage",
+  "note": "Negative cases are near-misses against ci-cd-pipelines and automated-code-review, which share the CI vocabulary but answer a different question, plus detection-engineering across clusters. gate-triage is for a suite that is ALREADY red; those two are for building or tuning one. detection-engineering is the collision nobody in either group had acknowledged: 'a noisy rule drowning out real findings' and 'about to add a suppression' appear in this skill's own description and 'we get too many alerts / tune this rule / tuning at the source instead of suppressing' in that one, so a noisy-rule question has to be decided by what the rule runs over — a check suite here, running detection content over an estate there.",
+  "queries": [
+    {
+      "query": "our CI has been failing for about two weeks now and everyone just merges anyway. there are four separate checks red, two of them i think are the linter's own fault. how do i dig out of this",
+      "should_trigger": true
+    },
+    {
+      "query": "the test suite on main went red on friday and nobody can tell me whether it's a real regression or the flaky snapshot thing again. i need to work out what's actually broken before i start fixing things",
+      "should_trigger": true
+    },
+    {
+      "query": "we have a lint rule that fires on like 800 files in the legacy folder and it's drowning out everything else in the PR checks. tempted to just add an ignore for that whole directory, is that dumb",
+      "should_trigger": true
+    },
+    {
+      "query": "before i ship this hotfix i want to route around the red build check - it's been broken since before my change and i don't think it's related to me. talk me out of it or tell me it's fine",
+      "should_trigger": true
+    },
+    {
+      "query": "need github actions on this repo before the contractor starts next week - node 22, npm test on prs and on pushes to main, and cache the deps because a cold install takes about four minutes. nothing fancy, there's just never been anything running on this one and i've not set one up from scratch here before",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: building a pipeline from nothing, not triaging a red one — there is no suite to classify failures in yet."
+    },
+    {
+      "query": "our PR bot comments way too much, people have started ignoring it entirely. i want to cut the rules down to ones that actually catch bugs",
+      "should_trigger": false,
+      "why": "Near-miss on automated-code-review: tuning review automation, not classifying failures in a suite."
+    },
+    {
+      "query": "this one integration test fails maybe one run in five on CI and passes locally every single time. it's the one that hits the postgres container",
+      "should_trigger": false,
+      "why": "A single flaky test is a debugging problem; gate-triage is about a suite whose red has stopped meaning anything."
+    },
+    {
+      "query": "the deploy step in our pipeline is taking 11 minutes and most of it looks like it's rebuilding the docker image from scratch every time. can we make that faster",
+      "should_trigger": false,
+      "why": "Near-miss on ci-cd-pipelines: pipeline performance, and nothing is failing."
+    },
+    {
+      "query": "one of our rules fires about three hundred times a day, the analysts just click acknowledge on them now without reading any of it, and the shift lead wants it switched off before monday. i'm fairly sure there is something real buried in that volume, nobody can get at it under the noise. do we suppress it or is there a better move",
+      "should_trigger": false,
+      "why": "Near-miss on detection-engineering: a noisy rule drowning out real findings, with a suppression about to be added, is word for word this skill's own trigger — but the rule is running detection content over an estate rather than a check inside a suite, so the answer is tuning it at the source and proving it still fires, not classifying failures as instrument defect, not-ours or real debt."
+    }
+  ]
+}

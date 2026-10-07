@@ -1,0 +1,42 @@
+{
+  "skill_name": "concurrent-writers",
+  "note": "The signal is SEVERAL writers on one repo at once. Negatives are ordinary git questions with a single author, which is most git questions.",
+  "queries": [
+    {
+      "query": "i've got three agent sessions going in the same repo and one of them just committed a file another one had staged. what's the safe way to commit when i can't be sure the index is mine",
+      "should_trigger": true
+    },
+    {
+      "query": "someone rebased our shared branch and now a commit i made this morning has just vanished. it's not in the log at all and the sha i wrote down doesn't resolve",
+      "should_trigger": true
+    },
+    {
+      "query": "about to clean up a bunch of stray assets in the project folder but half of them might belong to whoever is working on the vegetation pass. how do i not delete their stuff",
+      "should_trigger": true
+    },
+    {
+      "query": "two of us have the unreal editor open on the same .umap and it's an LFS binary so it can't merge. what's the protocol here",
+      "should_trigger": true
+    },
+    {
+      "query": "i need to undo my last two commits but keep the changes in my working tree. i'm the only one on this repo",
+      "should_trigger": false,
+      "why": "Ordinary single-author git. The whole premise of this skill is other writers."
+    },
+    {
+      "query": "what's the difference between git reset --soft and --mixed, i can never remember which one keeps things staged",
+      "should_trigger": false,
+      "why": "A definitional question with a short answer; no coordination problem."
+    },
+    {
+      "query": "our team keeps getting merge conflicts in package-lock.json every time two people add a dependency. is there a way to stop that",
+      "should_trigger": false,
+      "why": "Genuinely close - several writers - but it is a mergeable text file with a known lockfile answer, not the unmergeable-binary coordination problem."
+    },
+    {
+      "query": "i want to commit only the three files i changed for this feature, not the other stuff sitting dirty in my tree",
+      "should_trigger": false,
+      "why": "Near-miss on scoped-commit, which owns staging discipline for a single author."
+    }
+  ]
+}
