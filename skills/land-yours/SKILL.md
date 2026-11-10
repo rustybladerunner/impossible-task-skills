@@ -20,9 +20,9 @@ Use this skill when the way is ABC and a stage is ready to land. Also use it eac
 1. Survey the tree. Run `git status --short` for the area that you touched, and run `git log -1 --oneline`. Mark the paths that belong to this change.
 2. Stage explicit paths. Never run `git add -A` or `git add .`.
    - If your hunks share a file with other work, and the tool can stage single hunks, stage only your hunks.
-   - If the tool cannot stage single hunks, commit the whole file. Say so in the commit message.
-3. Read the staged set back. Run `git diff --cached --stat`. Then confirm that the name list holds only the paths that you intended.
-4. Commit with a message that says why. On Windows, put `-m` or `-F` before `--`. Git reads a `-m` that follows `--` as a path.
+   - If the tool cannot stage single hunks, prepare and verify an exact patch in a private index or authorized isolated copy. If the changes cannot be separated, leave the file uncommitted until its owner agrees on the combined change.
+3. Read the full proposed diff, including shared-file hunks. Preserve unrelated staged entries. Recheck ownership and the base immediately before committing.
+4. Coordinate one committer, or use a private index and a checked ref update that refuses a changed base. Under exclusive ownership, explicit-path commits preserve unrelated staged paths but take the whole working-file contents of each named path. Use the private index for a partial-file commit. Put `-m` or `-F` before `--`, then verify the commit and preserved index.
 5. Do not push unless this session received a request to push.
 
 Add an attribution trailer only if the repo already uses one. Name only the model that did the work. Do not copy a trailer from a different project.

@@ -59,18 +59,21 @@ A skill is useful only if the assistant loads it at the correct time. We measure
 with trigger sets. Each set in `evals/<skill>/triggers.json` has realistic prompts that
 must load the skill, and near-miss prompts that must not load it.
 
-Each run below sent every prompt three times. "Recall" is the fraction of should-load
-prompts that loaded the skill. "Specificity" is the fraction of near-miss prompts that
-did not load it.
+These are historical trigger observations, not a new evaluation of the current
+release. The result files do not bind the measurements to a model version or a
+skill-text hash. Each prompt was attempted three times; repeats are not new unique
+cases. "Recall" and "Specificity" below use only completed, non-error attempts.
+Errored attempts are reported separately and are not counted as successful loads
+or correct refusals.
 
-| Skill | Recall | Specificity | Data |
-|:--|--:|--:|:--|
-| `concurrent-writers` | 12/12 | 11/11 | [results](evals/results/concurrent-writers-reps3.json) |
-| `fix-once` | 10/10 | 16/16 | [results](evals/results/fix-once-reps3.json) |
-| `gate-triage` | 11/11 | 9/9 | [results](evals/results/gate-triage-reps3.json) |
-| `silent-no-ops` | 12/12 | 10/10 | [results](evals/results/silent-no-ops-reps3.json) |
-| `handoff` | 9/15 | 15/15 | [results](evals/results/2026-08-26-handoff-reps3.json) |
-| `grill-yourself` | 0/15 | 15/15 | [results](evals/results/2026-08-26-grill-yourself-reps3.json) |
+| Skill | Recall | Specificity | Errored / attempted | Data |
+|:--|--:|--:|--:|:--|
+| `concurrent-writers` | 12/12 | 11/11 | 1/24 | [results](evals/results/concurrent-writers-reps3.json) |
+| `fix-once` | 10/10 | 16/16 | 4/30 | [results](evals/results/fix-once-reps3.json) |
+| `gate-triage` | 11/11 | 9/9 | 4/24 | [results](evals/results/gate-triage-reps3.json) |
+| `silent-no-ops` | 12/12 | 10/10 | 2/24 | [results](evals/results/silent-no-ops-reps3.json) |
+| `handoff` | 9/15 | 15/15 | Not recorded | [results](evals/results/2026-08-26-handoff-reps3.json) |
+| `grill-yourself` | 0/15 | 15/15 | Not recorded | [results](evals/results/2026-08-26-grill-yourself-reps3.json) |
 
 We publish the failures too. Before a description rewrite, `handoff` did not load on
 any should-load prompt (one run of each prompt). After the rewrite, it loaded on 9 of 15
@@ -80,7 +83,10 @@ file records the reason we think it fails. The skill asks the assistant to chang
 it behaves. It does not ask for an artifact. The assistant then follows the prompt
 directly and does not load a procedure.
 
-The other skills have trigger sets but no published measurement yet.
+The `handoff` result measured a 648-character description. The shipped skill now
+uses a different checkpoint compatibility description, so the historical 60% recall
+is not a measurement of that current description. The other core skills have
+trigger sets but no published measurement. The lens editions have no trigger sets.
 
 Two kinds of text in the result files were redacted before publication: local
 temporary paths (now `<tmp>/...`) and the name of an assistant configuration folder
@@ -88,9 +94,15 @@ temporary paths (now `<tmp>/...`) and the name of an assistant configuration fol
 
 ## Install
 
-Copy a skill folder into the skills folder that your assistant reads. Each skill works
-alone. Some skills name other skills in this repository. Those names are suggestions,
-and a skill does not fail if the other skill is not installed.
+Copy skill folders into the skills folder that your assistant reads. Install the
+whole collection when you want the procedures that call other skills. For example,
+`grill-yourself` refers to the inventory in `grill-me`, and `intercept` calls
+`whose-move`. A single-folder installation may need those procedures supplied too.
+
+`grill-me` requires a structured question tool with selectable choices. Without
+that tool, its question batches remain pending. Follow your host's permissions
+for tools, memory writes, commits and other actions; installing a skill does not
+grant those permissions.
 
 ## Checks
 
@@ -98,8 +110,11 @@ and a skill does not fail if the other skill is not installed.
 npm test
 ```
 
-This runs the lint. The lint checks that each skill follows the Agent Skills
-specification and contains no vendor name, local path, private address or credential.
+This runs the lint and its self-test. The lint checks skill structure and known
+patterns for vendor names, local paths, private addresses and credentials. Git
+must be available so the repository-wide inventory can be checked. These pattern
+checks do not prove that content or commit history contains no sensitive data.
+Review the exact publish set and any private denylist before publication.
 
 ## Language
 

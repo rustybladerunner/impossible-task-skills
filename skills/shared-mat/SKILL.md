@@ -25,9 +25,13 @@ Lens edition of `concurrent-writers`. `concurrent-writers` is the full version.
 2. Allow one writer per file. If another session owns the path, do your work in a
    different file or wait. Do not edit the shared file together with the other
    session and then reconcile later.
-3. The index is shared. The staged files of another session are in the same index
-   as yours. Commit by explicit path, so that you leave their staged entries
-   alone. Never use `git add -A`.
+3. The index and branch are shared. Coordinate one committer, or use a private
+   index and a checked ref update that refuses a changed base. Recheck ownership
+   at commit time. Explicit-path commits preserve unrelated staged paths but
+   include the whole working-file contents of each named path. For a mixed file,
+   verify an exact partial-file patch in the private index; do not bundle another
+   writer's work because interactive hunk staging is unavailable. Never use
+   `git add -A`. Verify the commit and that unrelated index entries survived.
 4. Delete only by an allowlist of paths that you just created and listed. Do not
    delete files because you recognize them as "junk."
 5. Put new behaviour in a new module, with a small call from the shared file. Do
@@ -35,7 +39,9 @@ Lens edition of `concurrent-writers`. `concurrent-writers` is the full version.
 
 ## Do not
 
-- Do not rewrite history on a branch that another person uses.
+- Do not rewrite history on a branch that another person uses without explicit
+  authority and exclusive branch/index ownership. A soft reset or a plumbing ref
+  update changes shared state even when working files stay intact.
 - Do not accept "the file looks coherent in my editor" as proof that the other
   writer has stopped. If time has passed, read the file from disk again before
   you edit it.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Source: the author's private skills repository, tools/lint.mjs @ 9f28db9.
-// Copied unchanged so this repository runs the same privacy and portability gate.
+// Adapted here to fail closed when the repository-wide file inventory is unavailable.
 // skills-lint -- portability + privacy gate for a distributable skills repo.
 //
 // WHY THIS EXISTS: these skills were harvested from a private multi-project
@@ -16,7 +16,7 @@
 
 import { readFileSync, readdirSync, statSync, existsSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { join, dirname, basename, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -623,6 +623,24 @@ function selfTest() {
     }
   }
 
+  // Exercise the actual CLI with Git absent. A partial privacy scan must fail.
+  {
+    const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => key.toLowerCase() !== 'path'))
+    env.PATH = ''
+    const result = spawnSync(process.execPath, [fileURLToPath(import.meta.url), '--json'], {
+      cwd: ROOT, env, encoding: 'utf8', windowsHide: true,
+    })
+    let report
+    try { report = JSON.parse(result.stdout) } catch { /* checked below */ }
+    const unavailable = report?.report?.some((entry) => entry.findings.some(
+      (finding) => finding.rule === 'repo-scan-unavailable' && finding.severity === 'error'
+    ))
+    if (result.error || result.status !== 2 || !unavailable) {
+      console.error('SELF-TEST BROKEN: missing Git did not fail the CLI with repo-scan-unavailable')
+      broken++
+    }
+  }
+
   if (broken) {
     console.error('\nself-test: ' + broken + ' failure(s) -- the gate is not measuring what it claims.')
     process.exit(2)
@@ -632,7 +650,7 @@ function selfTest() {
     ' clean samples passed, ' + FM_CASES.length + ' spec-conformance, ' +
     MANIFEST_CASES.length + ' manifest, ' + ALLOW_CASES.length +
     ' inline-allow and ' + DENY_CASES.length + ' denylist-boundary cases correct, ' +
-    'repo file list covers tracked + untracked. Gate is live.'
+    'repo file list covers tracked + untracked; missing Git fails closed. Gate is live.'
   )
   process.exit(0)
 }
@@ -706,10 +724,12 @@ function main() {
   // `--exclude-standard` keeps .gitignore honoured, so ignored trees (and the
   // gitignored codename denylist) stay out exactly as before.
   let tracked = []
+  let scanUnavailable = false
   try {
     tracked = repoFileList(ROOT)
   } catch {
-    report.push({ file: '(repo)', findings: [{ rule: 'repo-scan-unavailable', severity: 'warn', why: 'git ls-files failed, so only skills/ was scanned; committed files outside it were NOT checked.', line: 0, match: '', text: '' }] })
+    scanUnavailable = true
+    report.push({ file: '(repo)', findings: [{ rule: 'repo-scan-unavailable', severity: 'error', why: 'git ls-files failed, so only skills/ was scanned; committed files outside it were NOT checked.', line: 0, match: '', text: '' }] })
   }
   const SCANNABLE = /\.(md|mjs|js|json|txt|ya?ml)$/i
   for (const rel of tracked) {
@@ -752,7 +772,7 @@ function main() {
     console.log('\n' + skillDirs.length + ' skill(s) scanned -- ' + errors.length + ' error(s), ' + warns.length + ' warning(s)')
     if (!errors.length) console.log('clean: no machine paths, credentials, or private references.')
   }
-  process.exit(errors.length ? 1 : 0)
+  process.exit(scanUnavailable ? 2 : errors.length ? 1 : 0)
 }
 
 if (process.argv[1] && /lint\.mjs$/.test(process.argv[1].replace(/\\/g, '/'))) main()

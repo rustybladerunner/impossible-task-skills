@@ -27,13 +27,18 @@ worst failures occur in *git itself*, and they affect text repositories equally.
 one here, and it causes the most damage. The staged, in-progress work of another
 session is in the same index as yours.
 
-- **Commit by explicit pathspec**: `git commit <paths> -m …`. This command leaves
-  the staged entries of other sessions alone.
+- Coordinate one committer, or prepare the reviewed tree in a private index and
+  update the branch only if its expected base still matches. Recheck ownership
+  immediately before staging and committing.
+- Under exclusive ownership, commit explicit paths with `git commit -m "<message>" -- <paths>`.
+  This preserves unrelated staged paths but takes each named file from the working
+  tree. It does not preserve partial hunk selection in a mixed file.
 - **Never use `git add -A`.** Never use `git add <directory>`. Both commands
   collect the entries that another session staged.
 - Run `git status` immediately before any reset.
-- Run `git diff --cached --name-only` immediately before the commit. Read the
-  list. If it contains a file that you did not touch, stop.
+- Read the proposed full diff immediately before the commit. Preserve unrelated
+  staged entries. Stop for overlapping ownership or an uncertain commit scope;
+  do not unstage another session's work to empty the index.
 - **A blanket `git checkout -- <path>` is a destructive operation** in this
   setting. It discards the uncommitted edit of another session to that file, and
   it gives no warning. Use a targeted edit that changes only the lines that you
@@ -49,25 +54,24 @@ commits of another session completely, with no error and no notification.
 - **Do not use `git rebase --onto` in a live shared tree.** It checks out the
   commit from before the rewrite. During the rebase it removes files from disk
   that other sessions are reading.
-- If you must restructure history, do these steps:
-  1. Run `git reset --soft <base>`.
-  2. Unstage the entries that are not yours.
-  3. Commit again by pathspec.
-
-  The history result is the same, and the working tree does not change.
-- If plumbing commands can do the job, use them. `commit-tree` builds new commit
-  objects, and then you move a ref. These steps never read or write the working
-  tree. Thus they are safe while other sessions have uncommitted work.
+- A soft reset moves shared HEAD even though it leaves working files intact.
+  Unstaging afterward changes the shared index. Neither action is a safe
+  workaround for another writer's ownership.
+- `commit-tree` can create an object without changing working files. Moving the
+  shared ref still needs coordination and a checked expected base.
+- Rewrite history only with explicit authority and exclusive ownership of the
+  affected branch and index. Verify that the plan preserves concurrent commits.
+  Otherwise retain additive commits or use an authorized isolated workflow.
 
 ## Deleting
 
-- **Delete by allowlist, never by recognition.** A rule "remove what I do not
-  recognise" deletes the work of other people by definition, because you are not
-  expected to recognise it. Mark the items that must stay. Remove only items
-  outside that set.
-- **Move untracked files to quarantine. Never delete them.** Git has no copy of
-  an untracked file, so a deletion is final. Move stray files to an ignored
-  folder.
+- **Delete only an explicit removal-target allowlist.** Resolve the authorized
+  scope to exact files or owned subtrees. Check ownership and references first.
+  Do not delete everything outside a list of files to preserve. An unfamiliar
+  file is not permission to remove it.
+- Untracked files can belong to another writer, and Git has no recovery copy.
+  Do not move or delete them without authority and coordination with their owner.
+  Use a reversible quarantine only within that authorized scope.
 - **Delete dependents before the item that they depend on.** If you do not, you
   leave broken references.
 
@@ -94,7 +98,7 @@ the write landed on disk. Do not trust the return value.
 
 ## Reporting
 
-State which paths you committed. Confirm that nothing else was staged. If you
+State which paths you committed. Confirm that unrelated staged entries were preserved. If you
 discarded or overwrote anything that was not yours, state it clearly and
 immediately. If you do not, the person who lost the work finds the silent
 overwrite hours later.
