@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "node tools/lint.mjs",
-    "test": "node tools/lint.mjs --self-test && node tools/lint.mjs"
+    "test": "node tools/lint.mjs --self-test && node tools/lint.mjs && node --test tools/lint.test.mjs"
   },
   "license": "MIT",
   "repository": {
