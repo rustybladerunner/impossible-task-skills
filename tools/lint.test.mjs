@@ -69,6 +69,10 @@ test('checkManifests: good passes, reserved name and traversal fail', () => {
 function runLint(skills) {
   const dir = mkdtempSync(join(tmpdir(), 'skills-lint-e2e-'))
   try {
+    // lint.mjs fails closed when it cannot list the repo's files, so the
+    // fixture has to be a real repository, not just a folder.
+    const init = spawnSync('git', ['init', '-q'], { cwd: dir, encoding: 'utf8' })
+    assert.equal(init.status, 0, init.stderr)
     mkdirSync(join(dir, 'tools'))
     copyFileSync(LINT, join(dir, 'tools', 'lint.mjs'))
     mkdirSync(join(dir, '.claude-plugin'))
