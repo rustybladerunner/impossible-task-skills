@@ -37,6 +37,13 @@ Bruce Lee's Five Ways of Attack.
 | [`grill-yourself`](skills/grill-yourself/SKILL.md) | [`burn-the-questions`](skills/burn-the-questions/SKILL.md) | Answer every question you can before you ask a person. |
 | [`grill-me`](skills/grill-me/SKILL.md) | | Ask the decisions that block the work, and record the answers. |
 
+### Model adaptation
+
+| Skill | Use it to |
+|:--|:--|
+| [`policy-adaptation-eval`](skills/policy-adaptation-eval/SKILL.md) | Decide whether a checklist or adapter earns its cost on held-out tasks. |
+| [`train-policy-adapter`](skills/train-policy-adapter/SKILL.md) | Train, reload, and package a low-rank adapter for an open-weight base model. |
+
 ### Shipping
 
 | Core skill | Lens edition | Use it to |
